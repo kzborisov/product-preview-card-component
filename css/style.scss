@@ -1,0 +1,152 @@
+@import "./variables.scss";
+
+$xsBreakpoint: 576px;
+$mdBreakpoint: 1024px;
+
+@mixin xs-breakpoint {
+  @media only screen and (min-width: $xsBreakpoint) {
+    @content;
+  }
+}
+
+@mixin md-breakpoint {
+  @media only screen and (min-width: $mdBreakpoint) {
+    @content;
+  }
+}
+
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: $font-family-montserat;
+  background: #f2eae2;
+  min-width: 100vw;
+  min-height: 100vh;
+  overflow: hidden;
+
+  @include xs-breakpoint {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  #card {
+    margin: 28px 16px;
+    border-radius: 10px;
+    background: $white;
+
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+
+    @include md-breakpoint {
+      margin: 0;
+      flex-direction: row;
+      align-items: center;
+      justify-content: space-between;
+      width: 600px;
+      height: 450px;
+      gap: unset;
+    }
+
+    .card__img {
+      @include md-breakpoint {
+        height: 100%;
+      }
+      img {
+        border-radius: 10px 10px 0 0;
+        width: 100%;
+        height: 240px;
+        object-fit: cover;
+
+        @include md-breakpoint {
+          height: 100%;
+          width: 300px;
+          border-radius: 10px 0 0 10px;
+        }
+      }
+    }
+
+    .content {
+      margin: 0 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+
+      @include md-breakpoint {
+        margin: 0 32px;
+      }
+
+      .category {
+        font-style: normal;
+        font-weight: 500;
+        font-size: 12px;
+        line-height: 15px;
+        letter-spacing: 5px;
+        color: $dark-grayish-blue;
+      }
+
+      .card__title {
+        font-family: "Fraunces";
+        font-style: normal;
+        font-weight: 700;
+        font-size: 32px;
+        line-height: 32px;
+        color: $very-dark-blue;
+      }
+
+      .card__desc {
+        font-style: normal;
+        font-weight: 500;
+        font-size: 14px;
+        line-height: 23px;
+        color: $dark-grayish-blue;
+      }
+
+      .price-container {
+        display: flex;
+        gap: 19px;
+        align-items: center;
+
+        .price {
+          font-family: "Fraunces";
+          font-style: normal;
+          font-weight: 700;
+          font-size: 32px;
+          line-height: 32px;
+          color: $dark-cyan;
+        }
+
+        .price-before {
+          font-family: "Montserrat";
+          font-style: normal;
+          font-weight: 500;
+          font-size: 13px;
+          line-height: 23px;
+          text-decoration-line: line-through;
+          color: $dark-grayish-blue;
+        }
+      }
+
+      .add-btn {
+        margin: 0 auto 24px;
+        background: $dark-cyan;
+        border-radius: 8px;
+        display: flex;
+        gap: 12px;
+        justify-content: center;
+        align-items: center;
+        color: $white;
+        padding: 15px;
+        width: 100%;
+        cursor: pointer;
+      }
+    }
+  }
+}
